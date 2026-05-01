@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Department of Industrial Management — BSc (Hons) programmes in MIT and IT at the University of Kelaniya.">
+<title>Department of Industrial Management — University of Kelaniya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #080B0C;
+    --surface: #111416;
+    --surface-2: #181C1E;
+    --border: #1E2426;
+    --border-light: #252C2F;
+    --accent: #00C2CC;
+    --accent-dim: rgba(0,194,204,0.08);
+    --accent-mid: rgba(0,194,204,0.15);
+    --text: #F0F2F2;
+    --text-muted: #7A8A8C;
+    --text-dim: #4A5658;
+    --white: #FFFFFF;
+    --yellow: #F5C842;
+    --radius: 12px;
+    --radius-lg: 20px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ─── LANGUAGE TOGGLE LOGIC ─── */
+  body.lang-en .si { display: none !important; }
+  body.lang-si .en { display: none !important; }
+
+  body.lang-si {
+    line-height: 1.7;
+  }
+
+  /* ─── INITIAL LANGUAGE MODAL ─── */
+  #langModal {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 11, 12, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-content {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 3rem 2.5rem;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .modal-content h3 {
+    font-family: 'Syne', sans-serif;
+    color: var(--white);
+    margin-bottom: 2rem;
+    font-size: 1.4rem;
+  }
+
+  .lang-btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .lang-btn-group button {
+    background: var(--surface-2);
+    color: var(--white);
+    border: 1px solid var(--border-light);
+    padding: 1rem;
+    border-radius: var(--radius);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .lang-btn-group button:hover {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ─── HEADER CONTROLS (SOCIAL + LANG) ─── */
+  .header-controls {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .sticky-lang-switcher {
+    display: flex;
+    background: rgba(17, 20, 22, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: 30px;
+    padding: 4px;
+  }
+
+  .sticky-lang-switcher button {
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sticky-lang-switcher button.active {
+    background: var(--accent);
+    color: #000;
+  }
+
+  .header-social {
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(17, 20, 22, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: 30px;
+    padding: 6px 12px;
+  }
+
+  .header-social .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+  }
+
+  .header-social .social-link:hover {
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  .header-social .social-link svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  /* ─── SLIDESHOW HERO ─── */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 580px;
+    max-height: 860px;
+    overflow: hidden;
+  }
+
+  .slides {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .slide.active { opacity: 1; }
+
+  /* Fallback gradients if images fail to load */
+  .slide { background-color: #0A1A1C; }
+
+  /* Noise overlay */
+  .slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(8,11,12,0.3) 0%,
+      rgba(8,11,12,0.6) 50%,
+      rgba(8,11,12,0.92) 85%,
+      rgba(8,11,12,1) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 0 6vw 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.6rem, 5.5vw, 5rem);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    max-width: 820px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.35s forwards;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-top: 1.1rem;
+    font-weight: 300;
+    max-width: 650px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.5s forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.65s forwards;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.75rem 1.6rem;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+  }
+  .btn-primary:hover { background: #00d8e4; transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-light);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Slide indicators */
+  .slide-dots {
+    position: absolute;
+    bottom: 2rem;
+    right: 6vw;
+    z-index: 3;
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 16px;
+    height: 2px;
+    background: rgba(255,255,255,0.25);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 1px;
+  }
+  .dot.active { background: var(--accent); width: 28px; }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    align-items: stretch;
+  }
+
+  .stat-item {
+    flex: 1;
+    padding: 1.4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-right: 1px solid var(--border);
+  }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .stat-item.accent .stat-value { color: var(--accent); }
+
+  /* ─── LAYOUT ─── */
+  .container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 5vw;
+  }
+
+  section { padding: 5rem 0; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.2rem;
+  }
+  .section-label::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--white);
+  }
+
+  .section-title em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  /* ─── ABOUT ─── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  .about-text {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  .about-text p + p { margin-top: 1rem; }
+
+  .highlight-box {
+    background: var(--accent-dim);
+    border: 1px solid rgba(0,194,204,0.2);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1.4rem 1.6rem;
+    margin-top: 1.5rem;
+  }
+
+  .highlight-box .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .highlight-box .value {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .highlight-box .desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .entry-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.8rem;
+  }
+
+  .entry-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .entry-req {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    padding-left: 1rem;
+    border-left: 2px solid var(--border-light);
+    margin-bottom: 0.8rem;
+  }
+
+  .entry-req strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .or-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0.6rem 0;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .or-divider::before, .or-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+
+  .timeline-step {
+    background: var(--surface);
+    padding: 2rem 1.6rem;
+    position: relative;
+  }
+
+  .timeline-step:last-child .step-connector { display: none; }
+
+  .step-year {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--border-light);
+    line-height: 1;
+    margin-bottom: 0.8rem;
+  }
+
+  .step-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--accent-dim);
+    color: var(--accent);
+    padding: 3px 10px;
+    border-radius: 30px;
+    margin-bottom: 0.8rem;
+  }
+
+  .step-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+  }
+
+  .step-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ─── PROGRAMMES ─── */
+  .programmes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .programme-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .programme-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .programme-card:hover { border-color: var(--border-light); background: var(--surface-2); }
+  .programme-card:hover::before { opacity: 1; }
+
+  .programme-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-dim);
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .programme-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+
+  .programme-short {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .spec-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: all 0.15s ease;
+  }
+
+  .spec-item:hover {
+    background: var(--accent-dim);
+    border-color: rgba(0,194,204,0.2);
+  }
+
+  .spec-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .spec-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .spec-careers {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  /* ─── WHY SECTION ─── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .why-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.8rem;
+    transition: border-color 0.2s ease;
+  }
+
+  .why-card:hover { border-color: var(--border-light); }
+
+  .why-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--accent-dim);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .why-icon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  .why-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .why-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .imssa-card {
+    grid-column: 1 / -1;
+    background: var(--surface-2);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 2rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .imssa-text { flex: 1; }
+
+  .imssa-badge {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .imssa-events {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+  }
+
+  .tag {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border-light);
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  /* ─── CONTACT FOOTER ─── */
+  .contact-section {
+    border-top: 1px solid var(--border);
+    padding: 4rem 0 3rem;
+  }
+
+  .contact-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-info { flex: 1; min-width: 260px; }
+
+  .contact-dept {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .contact-uni {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+  }
+
+  .contact-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-phone:hover { color: var(--accent); }
+  .contact-phone svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+
+  .website-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: var(--accent);
+    text-decoration: none;
+    margin-top: 0.8rem;
+    transition: opacity 0.2s;
+  }
+  .website-link:hover { opacity: 0.75; }
+  .website-link svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+    margin: 0;
+  }
+
+  /* ─── BADGES ─── */
+  .standard-badges {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .std-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--yellow);
+    background: rgba(245,200,66,0.06);
+    border: 1px solid rgba(245,200,66,0.15);
+    padding: 5px 12px;
+    border-radius: 4px;
+    letter-spacing: 0.06em;
+  }
+
+  .std-badge::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: var(--yellow);
+    border-radius: 50%;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .timeline { grid-template-columns: 1fr 1fr; }
+    .programmes-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .imssa-card { flex-direction: column; gap: 1rem; }
+  }
+
+  @media (max-width: 640px) {
+    .header-controls { flex-direction: column-reverse; align-items: flex-end; gap: 0.5rem; right: 15px; top: 15px; }
+    .stats-bar { flex-direction: column; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat-item:last-child { border-bottom: none; }
+    .timeline { grid-template-columns: 1fr; }
+    .hero-content { padding: 0 1.5rem 4rem; }
+    .contact-grid { flex-direction: column; align-items: flex-start; }
+    .slide-dots { right: 1.5rem; }
+  }
+</style>
+</head>
+<body class="lang-en"> <div id="langModal">
+  <div class="modal-content">
+    <h3>Select Language<br><span style="font-size:0.9em;color:var(--text-muted);margin-top:8px;display:block;">භාෂාව තෝරන්න</span></h3>
+    <div class="lang-btn-group">
+      <button onclick="setLanguage('en')">English</button>
+      <button onclick="setLanguage('si')">සිංහල</button>
+    </div>
+  </div>
+</div>
+
+<div class="header-controls">
+  <div class="header-social">
+    <a href="https://facebook.com/imssa.uok" target="_blank" class="social-link" title="Facebook">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    </a>
+    <a href="https://instagram.com/imssa.uok" target="_blank" class="social-link" title="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/company/dimuok/" target="_blank" class="social-link" title="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+    </a>
+    <a href="https://im.kln.ac.lk/" target="_blank" class="social-link" title="Official Website">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    </a>
+  </div>
+  <div class="sticky-lang-switcher">
+    <button id="btn-en" class="active" onclick="setLanguage('en')">EN</button>
+    <button id="btn-si" onclick="setLanguage('si')">සිංහල</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="slides" id="slides">
+    <div class="slide active" style="background-image: url('slide1.webp')"></div>
+    <div class="slide" style="background-image: url('slide2.webp')"></div>
+    <div class="slide" style="background-image: url('slide3.webp')"></div>
+    <div class="slide" style="background-image: url('slide4.webp')"></div>
+    <div class="slide" style="background-image: url('slide5.webp')"></div>
+    <div class="slide" style="background-image: url('slide6.webp')"></div>
+    <div class="slide" style="background-image: url('slide7.webp')"></div>
+    <div class="slide" style="background-image: url('slide8.webp')"></div>
+  </div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-label">
+        <span class="en">University of Kelaniya — Faculty of Science</span>
+        <span class="si">කැලණිය විශ්වවිද්‍යාලයීය විද්‍යා පීඨයේ</span>
+      </div>
+      <h1>
+        <span class="en">Department of<br><em>Industrial Management</em></span>
+        <span class="si">Department of<br><em>Industrial Management</em></span>
+      </h1>
+      <p class="hero-sub">
+        <span class="en">Where management thinking meets technology — shaping the next generation of IT and business professionals.</span>
+        <span class="si">කැලණිය විශ්වවිද්‍යාලයීය විද්‍යා පීඨයේ, Department of Industrial Management (DIM) මඟින් උපාධි පාඨමාලා ද්විත්වයක් පිරිනමනු ලබනවා..</span>
+      </p>
+      <div class="hero-actions">
+        <a href="https://im.kln.ac.lk/" target="_blank" class="btn btn-primary">
+          <span class="en">Visit Website</span>
+          <span class="si">වෙබ් අඩවියට පිවිසෙන්න</span>
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+        <a href="#programmes" class="btn btn-outline">
+          <span class="en">Explore Programmes</span>
+          <span class="si">පාඨමාලා බලන්න</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-dots" id="dots">
+    <button class="dot active" onclick="goSlide(0)"></button>
+    <button class="dot" onclick="goSlide(1)"></button>
+    <button class="dot" onclick="goSlide(2)"></button>
+    <button class="dot" onclick="goSlide(3)"></button>
+    <button class="dot" onclick="goSlide(4)"></button>
+    <button class="dot" onclick="goSlide(5)"></button>
+    <button class="dot" onclick="goSlide(6)"></button>
+    <button class="dot" onclick="goSlide(7)"></button>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-item accent">
+    <span class="stat-value">027D</span>
+    <span class="stat-label">
+      <span class="en">UGC Application Code</span>
+      <span class="si">UGC අයදුම් කේතය</span>
+    </span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-value">2</span>
+    <span class="stat-label">
+      <span class="en">Degree Programmes</span>
+      <span class="si">උපාධි පාඨමාලා</span>
+    </span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-value">4 Yrs</span>
+    <span class="stat-label">
+      <span class="en">Honours Programme</span>
+      <span class="si">ගෞරව උපාධිය</span>
+    </span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-value">9+</span>
+    <span class="stat-label">
+      <span class="en">Specialization Paths</span>
+      <span class="si">Specialize වීමේ අවස්ථා</span>
+    </span>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="section-label">
+      <span class="en">About the Department</span>
+      <span class="si">මෙම උපාධි පාඨමාලාවන් පිළිබඳව කෙටියෙන්</span>
+    </div>
+
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title">
+          <span class="en">At the intersection of <em>business</em> and <em>technology</em></span>
+          <span class="si"><em>කළමනාකරණය</em> සහ <em>තොරතුරු තාක්ෂණය</em> ආවරණය වන සිව් අවුරුදු ගෞරව උපාධි පාඨමාලාවක්..</span>
+        </h2>
+        <div class="about-text" style="margin-top:1.5rem;">
+          <p class="en">The Department of Industrial Management at the University of Kelaniya offers two BSc Honours programmes designed for students who want to combine the power of Information Technology with the discipline of Management.</p>
+          <p class="en">Our four-year curriculum is structured to give you a strong interdisciplinary foundation in Year 1, followed by a specialization path that aligns with your ambitions — whether that's building software, managing operations, securing networks, or leading business transformation.</p>
+          
+          <p class="si">මේක කළමනාකරණය (Management) සහ තොරතුරු තාක්ෂණය (IT) යන ක්ෂේත්‍ර දෙකම ආවරණය වන විදිහට නිර්මාණය වෙලා තිබෙන සිව් අවුරුදු ගෞරව උපාධි පාඨමාලාවක්..</p>
+          <p class="si">උපාධි පාඨමාලාවට පිවිසීමට භෞතීය විද්‍යා (Maths) සහ ජීව විද්‍යා (Bio) විෂය ධාරාවලින් ඉගෙනුම ලැබූ සිසුන් සඳහා අවස්ථාව උදා වෙනවා..</p>
+        </div>
+
+        <div class="highlight-box" style="margin-top:2rem;">
+          <div class="label">UGC Application Code</div>
+          <div class="value">027D</div>
+          <div class="desc">
+            <span class="en">Use this code when applying through the University Grants Commission</span>
+            <span class="si">විශ්වවිද්‍යාල ප්‍රවේශය සඳහා අයදුම් කිරීමේදී මෙම කේතය භාවිතා කරන්න</span>
+          </div>
+        </div>
+
+        <div class="standard-badges">
+          <span class="std-badge">ACM Aligned Curriculum</span>
+          <span class="std-badge">IEEE Standards</span>
+        </div>
+      </div>
+
+      <div class="entry-card reveal">
+        <div class="entry-title">
+          <span class="en">Entry Requirements</span>
+          <span class="si">ප්‍රවේශ වීමට අවශ්‍ය සුදුසුකම්</span>
+        </div>
+
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1rem;">
+          <span class="en">A/L Physics or Bio Science stream, with at least a <strong style="color:var(--text);">C pass</strong> in one of: Advanced Mathematics, Combined Mathematics, Mathematics, or Physics. Plus one of the following:</span>
+          <span class="si">අ.පො.ස. (උසස් පෙළ) විභාගයේදී උසස් ගණිතය, සංයුක්ත ගණිතය, ගණිතය හෝ භෞතික විද්‍යාව යන විෂයන්ගෙන් එක් විෂයකට <strong style="color:var(--text);">සම්මාන (අවම වශයෙන් C)</strong> සාමාර්ථයක් සහිතව:</span>
+        </p>
+
+        <div class="entry-req">
+          <span class="en"><strong>Option A —</strong> Pass in <strong>3 subjects</strong> from the Bio or Physical Science stream</span>
+          <span class="si">ජෛවීය විද්‍යා හෝ භෞතීය විද්‍යා විෂය ධාරාවෙන් <strong>විෂයන් තුනකින් සමත් වීම.</strong></span>
+        </div>
+
+        <div class="or-divider">
+          <span class="en">or</span><span class="si">හෝ</span>
+        </div>
+
+        <div class="entry-req">
+          <span class="en"><strong>Option B —</strong> Pass in <strong>2 subjects</strong> from Bio/Physical Science <strong>+ ICT</strong></span>
+          <span class="si">ජෛවීය විද්‍යා හෝ භෞතීය විද්‍යා විෂය ධාරාවෙන් <strong>විෂයන් දෙකක් සහ තොරතුරු සහ සන්නිවේදන තාක්ෂණය (ICT) විෂය සමත් වීම.</strong></span>
+        </div>
+
+        <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--border);">
+          <p style="font-size:0.78rem;color:var(--text-dim);">
+            <span class="en">Both the Maths and Bio streams are eligible. ICT as a third subject can substitute one science subject.</span>
+            <span class="si">ඉහත සඳහන් සුදුසුකම් සැපිරිය යුතුයි.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <div class="container">
+    <div class="section-label">
+      <span class="en">Programme Structure</span>
+      <span class="si">Degree එකේ අවුරුදු 4 යන්නේ මෙහෙමයි</span>
+    </div>
+    <h2 class="section-title">
+      <span class="en">Four years, one complete<br><em>professional journey</em></span>
+      <span class="si">අවුරුදු 4 කින්<br><em>සාර්ථක ගමනාන්තයකට</em></span>
+    </h2>
+
+    <div class="timeline reveal">
+      <div class="timeline-step">
+        <div class="step-year">01</div>
+        <div class="step-tag">
+          <span class="en">Foundation</span><span class="si">පළමු වසර</span>
+        </div>
+        <div class="step-title">
+          <span class="en">IT + Management Core</span>
+          <span class="si">මූලික පදනම</span>
+        </div>
+        <p class="step-desc">
+          <span class="en">Build a solid interdisciplinary base covering both IT fundamentals and management principles.</span>
+          <span class="si">පළමු වසරේදී IT සහ Management කියන පැති දෙකම cover වෙන basic foundation එකක් ඔයාට ලැබෙනවා.</span>
+        </p>
+      </div>
+      <div class="timeline-step">
+        <div class="step-year">02</div>
+        <div class="step-tag">
+          <span class="en">Specialization</span><span class="si">දෙවන වසර</span>
+        </div>
+        <div class="step-title">
+          <span class="en">Choose Your Path</span>
+          <span class="si">Specialize වීම</span>
+        </div>
+        <p class="step-desc">
+          <span class="en">Select between BSc (Hons) in IT or MIT. Then drill deeper into your chosen specialization track at year-end.</span>
+          <span class="si">ඊටපස්සේ 2nd year එකේදී ඔයාගේ ආසාව සහ දක්ෂතාවය අනුව IT ද නැත්නම් MIT ද කියලා Specialization එක තෝරගන්න chance එක තියෙනවා.</span>
+        </p>
+      </div>
+      <div class="timeline-step">
+        <div class="step-year">03</div>
+        <div class="step-tag">
+          <span class="en">Industry</span><span class="si">තෙවන වසර</span>
+        </div>
+        <div class="step-title">
+          <span class="en">6-Month Internship</span>
+          <span class="si">කර්මාන්ත පුහුණුව</span>
+        </div>
+        <p class="step-desc">
+          <span class="en">Gain real-world experience with top industry companies. Option to graduate with a General Degree at this stage.</span>
+          <span class="si">3rd year එකේදී industry එකේ top companies එක්ක 6-month Industry Internship එකක් කරන්න ලැබෙනවා වගේම, අවශ්‍ය නම් මෙතනදි General Degree එකක් අරන් pass out වෙන්නත් option එකක් තියෙනවා.</span>
+        </p>
+      </div>
+      <div class="timeline-step">
+        <div class="step-year">04</div>
+        <div class="step-tag">
+          <span class="en">Graduate</span><span class="si">සිව්වන වසර</span>
+        </div>
+        <div class="step-title">
+          <span class="en">BSc (Hons) Graduate</span>
+          <span class="si">උපාධිධාරියෙකු ලෙස</span>
+        </div>
+        <p class="step-desc">
+          <span class="en">Step into the industry with confidence — as a full BSc (Hons) in MIT or IT graduate.</span>
+          <span class="si">අවසානයේදී, 4th year එක ඉවර වෙද්දී ඔයා B.Sc. (Hons) in MIT හෝ IT Graduate කෙනෙක් විදියට industry එකට step වෙන්නේ ලොකු confidence එකකින්!</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="programmes">
+  <div class="container">
+    <div class="section-label">
+      <span class="en">Degree Programmes</span>
+      <span class="si">උපාධි පාඨමාලා</span>
+    </div>
+    <h2 class="section-title">
+      <span class="en">Two programmes,<br><em>nine specialization tracks</em></span>
+      <span class="si">උපාධි පාඨමාලා ද්විත්වය සහ<br><em>Specialize වීමේ අවස්ථා</em></span>
+    </h2>
+
+    <div class="programmes-grid">
+
+      <div class="programme-card reveal">
+        <div class="programme-badge">BSc (Hons) in MIT</div>
+        <div class="programme-name">
+          <span class="en">Management &amp; Information Technology</span>
+          <span class="si">Management and Information Technology</span>
+        </div>
+        <div class="programme-short">
+          <span class="en">Three specialization tracks available from Year 2</span>
+          <span class="si">පළමු වසර අවසානයේ MIT තෝරගන්නා සිසුන්ට, 2nd year එක අවසානයේදී පහත ක්ෂේත්‍ර 3න් එකක් යටතේ specialize වීමට අවස්ථාව ලැබේ:</span>
+        </div>
+
+        <ul class="spec-list">
+          <li class="spec-item">
+            <span class="spec-name">Business Systems Engineering (BSE)</span>
+            <span class="spec-desc si">Business process review, workflow maps සහ data analysis හරහා ව්‍යාපාරයක් සාර්ථකව හා කාර්යක්ෂමව මෙහෙයවන විදිය ගැන තමයි මෙහිදී ඉගෙන ගන්නේ.</span>
+            <span class="spec-careers">Business Analyst · Industrial Engineer · Financial Engineer</span>
+          </li>
+          <li class="spec-item">
+            <span class="spec-name">Operations &amp; Supply Chain Management (OSCM)</span>
+            <span class="spec-desc si">Business Process Management සහ Supply Chain සම්බන්ධව නිෂ්පාදන හා සේවා ක්ෂේත්‍රයන්ට අවශ්‍ය නවීන දැනුම මෙයින් ආවරණය වෙනවා.</span>
+            <span class="spec-careers">Operations Manager · Supply Chain Analyst · Demand &amp; Supply Manager</span>
+          </li>
+          <li class="spec-item">
+            <span class="spec-name">Information Systems (IS)</span>
+            <span class="spec-desc si">ආයතනයක business strategies සහ IT systems අතර තියෙන බැඳීම, තාක්ෂණික අවශ්‍යතා කළමනාකරණය සහ තොරතුරු පද්ධති ආරක්ෂාව මෙහිදී focus කරනවා.</span>
+            <span class="spec-careers">IS Manager · Information Security Analyst · IT Consultant</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="programme-card reveal">
+        <div class="programme-badge">BSc (Hons) in IT</div>
+        <div class="programme-name">
+          <span class="en">Information Technology</span>
+          <span class="si">Information Technology</span>
+        </div>
+        <div class="programme-short">
+          <span class="en">Six career-focused specialization paths available</span>
+          <span class="si">IT පැත්තෙන් ඉදිරියට යන සිසුන්ට මේ වෘත්තීය මාර්ග (Career Paths) 6 ඔස්සේ specialize වෙන්න පුළුවන්:</span>
+        </div>
+
+        <ul class="spec-list">
+          <li class="spec-item">
+            <span class="spec-name">Software Engineering</span>
+            <span class="spec-desc si">නවීන මෘදුකාංග (software) නිර්මාණය, architecture සහ පද්ධති සංවර්ධනය.</span>
+            <span class="spec-careers">Software Engineer · Full Stack Developer · Tech Lead</span>
+          </li>
+          <li class="spec-item">
+            <span class="spec-name">Data Engineering / Data Science</span>
+            <span class="spec-desc si">දත්ත එකතු කිරීම, විශ්ලේෂණය සහ ඒ හරහා ව්‍යාපාරික තීරණ ගැනීමට අවශ්‍ය AI / Machine Learning පද්ධති ගොඩනැගීම.</span>
+            <span class="spec-careers">Data Scientist · AI Engineer · ML Engineer</span>
+          </li>
+          <li class="spec-item">
+            <span class="spec-name">IoT Engineering</span>
+            <span class="spec-desc si">අන්තර්ජාලය හා සම්බන්ධ smart devices, sensors සහ automation තාක්ෂණය පිළිබඳව අධ්‍යයනය.</span>
+            <span class="spec-careers">IoT Engineer · Embedded Systems Engineer · Solutions Architect</span>
+          </li>
+          <li class="spec-item">
+            <span class="spec-name">DevOps Engineering</span>
+            <span class="spec-desc si">Software development සහ IT operations එකට සම්බන්ධ කරමින් වඩාත් වේගවත්ව සහ ආරක්ෂිතව පද්ධති release කිරීම හා නඩත්තුව.</span>
+            <span class="spec-careers">DevOps Engineer · Cloud Engineer · Site Reliability Engineer (SRE)</span>
+          </li>
+          <li class="spec-item">
+            <span class="spec-name">Cyber Security</span>
+            <span class="spec-desc si">තොරතුරු පද්ධති, networks සහ දත්ත සයිබර් ප්‍රහාරවලින් ආරක්ෂා කිරීමේ තාක්ෂණය.</span>
+            <span class="spec-careers">Cyber Security Analyst · Ethical Hacker · Security Engineer</span>
+          </li>
+          <li class="spec-item">
+            <span class="spec-name">Network Engineering</span>
+            <span class="spec-desc si">ආයතනික සන්නිවේදන ජාල (networks) සැලසුම් කිරීම, නිර්මාණය සහ බාධාවකින් තොරව කළමනාකරණය කිරීම.</span>
+            <span class="spec-careers">Network Engineer · Systems Administrator · Network Architect</span>
+          </li>
+        </ul>
+        <div class="si" style="margin-top: 1.5rem; padding: 1rem; background: var(--accent-dim); border-radius: var(--radius); border-left: 3px solid var(--accent);">
+          <span style="font-size: 0.82rem; color: var(--text-muted);"><strong>විශේෂත්වය:</strong> අපගේ IT විෂයමාලාව සම්පූර්ණයෙන්ම ACM සහ IEEE වැනි ජාත්‍යන්තර මාර්ගෝපදේශ සහ ප්‍රමිතීන්ට අනුකූලව සකස් කර තිබීමයි!</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <div class="container">
+    <div class="section-label">
+      <span class="en">Why Choose DIM</span>
+      <span class="si">ඇයි මේ Degree එක සුවිශේෂී වෙන්නේ?</span>
+    </div>
+    <h2 class="section-title">
+      <span class="en">Built for the<br><em>professionals of tomorrow</em></span>
+      <span class="si">මේ 4-year honours degree එකෙන් Management සහ IT කියන ක්ෂේත්‍ර දෙකටම අවශ්‍ය technical දැනුම වගේම, corporate ලෝකයේ survive වෙන්න අත්‍යවශ්‍ය වෙන Communication, Leadership වගේ Soft Skills පවා ඔයාට ලැබෙනවා.</span>
+    </h2>
+
+    <div class="why-grid">
+
+      <div class="why-card reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="why-title">
+          <span class="en">High-End Facilities</span>
+          <span class="si">Top-Notch Facilities &amp; Updated Curriculum</span>
+        </div>
+        <p class="why-desc">
+          <span class="en">State-of-the-art computer labs, dedicated tech classrooms, and modern AI labs give you hands-on access to the tools the industry actually uses.</span>
+          <span class="si">අපි හැමවෙලේම industry එකත් එක්කම update වෙනවා. ඒ නිසා අපේ curriculum එක අලුත් වෙන technology වලට ගැළපෙන්න නිතරම update වෙනවා. ඒ වගේම students ලට practical knowledge එක ගන්න high-end computer labs, tech classrooms සහ නවීන AI Labs වලින් අපේ Department එක සමන්විතයි.</span>
+        </p>
+      </div>
+
+      <div class="why-card reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+        </div>
+        <div class="why-title">
+          <span class="en">Research &amp; Higher Education</span>
+          <span class="si">Research &amp; Higher Education</span>
+        </div>
+        <p class="why-desc">
+          <span class="en">Advanced research facilities in IT, Data Science, Industrial Engineering, and Digital Innovation. MPhil and PhD programmes are available for those pursuing an academic career.</span>
+          <span class="si">Job market එකට යනවට අමතරව academic පැත්තෙන් (Higher Education) ඉස්සරහට යන්න කැමති අයටත් DIM කියන්නේ හොඳම තැනක්. IT, Data Science, Industrial Engineering සහ Digital Innovation වගේ ක්ෂේත්‍රවල advanced research කරන්න අවශ්‍ය high-end facilities අපේ department එකේ තියෙනවා. ඒ වගේම MPhil සහ PhD programs දක්වා ඔයාගේ higher education සිහිනය හැබෑ කරගන්නත් මෙතනින් පූර්ණ සහයෝගය ලැබෙනවා.</span>
+        </p>
+      </div>
+
+      <div class="why-card reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="why-title">
+          <span class="en">Entrepreneurship Culture</span>
+          <span class="si">Start-up &amp; Entrepreneurship Culture</span>
+        </div>
+        <p class="why-desc">
+          <span class="en">Want to build your own startup? DIM provides the resources, mentorship, and environment to develop and grow your business idea from within the department itself.</span>
+          <span class="si">ඔයාට තියෙන්නේ Entrepreneur කෙනෙක් වෙලා තමන්ගේම Start-up එකක් ගොඩනගන හීනයක්ද? එහෙනම් ඒකටත් හොඳම තැන මේකයි. Department එක ඇතුලෙම ඉඳන් ඔයාගේ business idea එකට පණ දෙන්නත්, ඒක grow කරගන්නත් අවශ්‍ය facilities සහ resources අපි සපයලා දෙනවා.</span>
+        </p>
+      </div>
+
+      <div class="imssa-card reveal">
+        <div class="imssa-text">
+          <div class="imssa-badge">IMSSA</div>
+          <div class="why-title">
+            <span class="en">Industrial Management Science Students Association</span>
+            <span class="si">IMSSA සහ University Life</span>
+          </div>
+          <p class="why-desc">
+            <span class="en">The beating heart of departmental life — IMSSA bridges academics and ambition through landmark national events, intra-departmental competitions, and a support network that lasts well beyond graduation.</span>
+            <span class="si">Department එකේ spirit එක නියෝජනය කරන student body එක තමයි IMSSA (Industrial Management Science Students Association). HackX සහ Exposition වගේ දැවැන්ත National Level events වගේම, Academics සහ තවත් intra-departmental activities රැසක් හරහා studies සහ extra-curriculars සමබරව කරගෙන යන්න මේ හරහා ලොකු support එකක් ලැබෙනවා.</span>
+          </p>
+          <div class="imssa-events">
+            <span class="tag">HackX — Inter-University Hackathon</span>
+            <span class="tag">Exposition</span>
+            <span class="tag">Academic Workshops</span>
+            <span class="tag">Industry Sessions</span>
+            <span class="tag">ideaSprint</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="si reveal" style="grid-column: 1 / -1; margin-top: 1rem; text-align: center; padding: 2rem; border-top: 1px solid var(--border);">
+        <p style="font-size: 1.05rem; color: var(--text); font-weight: 500; max-width: 800px; margin: 0 auto; line-height: 1.8;">
+          කෙටියෙන්ම කිව්වොත්, IT සහ Management field එකේ ඉහළම තැනකට යන්න හීන දකින ඕනෑම කෙනෙකුට, කැලණිය විශ්වවිද්‍යාලයීය විද්‍යා පීඨයේ කර්මාන්ත පරිපාලන අධ්‍යයනාංශයෙන් (DIM) පිරිනමන මේ උපාධි පාඨමාලා ද්විත්වය ජීවිතේ ගන්න හොඳම තීරණයක් වෙයි!
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+<footer class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <div class="contact-info">
+        <div class="contact-dept">Department of Industrial Management</div>
+        <div class="contact-uni">
+          <span class="en">Faculty of Science, University of Kelaniya</span>
+          <span class="si">කැලණිය විශ්වවිද්‍යාලයීය විද්‍යා පීඨය</span>
+        </div>
+
+        <a href="tel:+94112903282" class="contact-phone">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.13 6.13l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"/></svg>
+          +94 11 290 3282
+        </a>
+
+        <br>
+        <a href="https://im.kln.ac.lk/" target="_blank" class="website-link">
+          im.kln.ac.lk
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+        </a>
+      </div>
+
+    </div>
+
+    <div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+      <span style="font-size:0.75rem;color:var(--text-dim);">Department of Industrial Management · University of Kelaniya</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ─── Language Control ───
+  function setLanguage(lang) {
+    // Hide modal if open
+    document.getElementById('langModal').style.display = 'none';
+    
+    // Set class on body
+    document.body.classList.remove('lang-en', 'lang-si');
+    document.body.classList.add('lang-' + lang);
+    
+    // Update sticky switcher active state
+    document.getElementById('btn-en').classList.remove('active');
+    document.getElementById('btn-si').classList.remove('active');
+    document.getElementById('btn-' + lang).classList.add('active');
+  }
+
+  // ─── Slideshow (8 slides) ───
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.dot');
+  let timer;
+
+  function goSlide(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    clearInterval(timer);
+    timer = setInterval(next, 5000);
+  }
+
+  function next() { goSlide((current + 1) % slides.length); }
+  timer = setInterval(next, 5000);
+
+  // ─── Scroll reveal ───
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
