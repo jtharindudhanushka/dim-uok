@@ -7,7 +7,7 @@
 <title>Department of Industrial Management — University of Kelaniya</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;0,9..40,700;0,9..40,800&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -65,7 +65,7 @@
 
   .modal-content {
     background: var(--surface);
-    border: 1px solid var(--border-light);
+    border: 2px solid var(--border-light);
     border-radius: var(--radius-lg);
     padding: 3rem 2.5rem;
     text-align: center;
@@ -91,13 +91,14 @@
   .lang-btn-group button {
     background: var(--surface-2);
     color: var(--white);
-    border: 1px solid var(--border-light);
+    border: 2px solid var(--border-light);
     padding: 1rem;
     border-radius: var(--radius);
     font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.2s ease;
     font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
   }
 
   .lang-btn-group button:hover {
@@ -121,7 +122,7 @@
     display: flex;
     background: rgba(17, 20, 22, 0.8);
     backdrop-filter: blur(10px);
-    border: 1px solid var(--border-light);
+    border: 2px solid var(--border-light);
     border-radius: 30px;
     padding: 4px;
   }
@@ -133,7 +134,7 @@
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.2s ease;
   }
@@ -148,7 +149,7 @@
     gap: 0.5rem;
     background: rgba(17, 20, 22, 0.8);
     backdrop-filter: blur(10px);
-    border: 1px solid var(--border-light);
+    border: 2px solid var(--border-light);
     border-radius: 30px;
     padding: 6px 12px;
   }
@@ -246,7 +247,7 @@
     gap: 8px;
     font-family: 'DM Sans', sans-serif;
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
@@ -308,7 +309,7 @@
     border-radius: 6px;
     font-family: 'DM Sans', sans-serif;
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 700;
     text-decoration: none;
     transition: all 0.2s ease;
     cursor: pointer;
@@ -324,7 +325,7 @@
   .btn-outline {
     background: transparent;
     color: var(--text);
-    border: 1px solid var(--border-light);
+    border: 2px solid var(--border-light);
   }
   .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
@@ -369,7 +370,6 @@
   .stat-item:last-child { border-right: none; }
 
   .stat-value {
-    font-family: 'Syne', sans-serif;
     font-size: 1.7rem;
     font-weight: 700;
     color: var(--white);
@@ -381,7 +381,7 @@
     color: var(--text-muted);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    font-weight: 400;
+    font-weight: 500;
   }
 
   .stat-item.accent .stat-value { color: var(--accent); }
@@ -397,7 +397,7 @@
 
   .section-label {
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
@@ -447,7 +447,7 @@
 
   .highlight-box {
     background: var(--accent-dim);
-    border: 1px solid rgba(0,194,204,0.2);
+    border: 2px solid rgba(0,194,204,0.2);
     border-left: 3px solid var(--accent);
     border-radius: 0 var(--radius) var(--radius) 0;
     padding: 1.4rem 1.6rem;
@@ -459,12 +459,11 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--accent);
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 6px;
   }
 
   .highlight-box .value {
-    font-family: 'Syne', sans-serif;
     font-size: 1.4rem;
     font-weight: 700;
     color: var(--white);
@@ -478,14 +477,13 @@
 
   .entry-card {
     background: var(--surface);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: var(--radius-lg);
     padding: 1.8rem;
   }
 
   .entry-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--white);
     margin-bottom: 1rem;
@@ -502,7 +500,7 @@
 
   .entry-req strong {
     color: var(--text);
-    font-weight: 500;
+    font-weight: 700;
   }
 
   .or-divider {
@@ -514,6 +512,7 @@
     color: var(--text-dim);
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    font-weight: 700;
   }
   .or-divider::before, .or-divider::after {
     content: '';
@@ -542,7 +541,6 @@
   .timeline-step:last-child .step-connector { display: none; }
 
   .step-year {
-    font-family: 'Syne', sans-serif;
     font-size: 2.5rem;
     font-weight: 800;
     color: var(--border-light);
@@ -553,7 +551,7 @@
   .step-tag {
     display: inline-block;
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     background: var(--accent-dim);
@@ -564,8 +562,7 @@
   }
 
   .step-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--white);
     margin-bottom: 0.6rem;
@@ -587,7 +584,7 @@
 
   .programme-card {
     background: var(--surface);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: var(--radius-lg);
     padding: 2rem;
     transition: border-color 0.2s ease, background 0.2s ease;
@@ -613,7 +610,7 @@
   .programme-badge {
     display: inline-block;
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--accent);
@@ -624,7 +621,6 @@
   }
 
   .programme-name {
-    font-family: 'Syne', sans-serif;
     font-size: 1.3rem;
     font-weight: 700;
     color: var(--white);
@@ -662,7 +658,7 @@
 
   .spec-name {
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 700;
     color: var(--white);
   }
 
@@ -676,6 +672,7 @@
     font-size: 0.75rem;
     color: var(--text-dim);
     margin-top: 4px;
+    font-weight: 500;
   }
 
   /* ─── WHY SECTION ─── */
@@ -688,7 +685,7 @@
 
   .why-card {
     background: var(--surface);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: var(--radius-lg);
     padding: 1.8rem;
     transition: border-color 0.2s ease;
@@ -710,8 +707,7 @@
   .why-icon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
   .why-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--white);
     margin-bottom: 0.5rem;
@@ -726,7 +722,7 @@
   .imssa-card {
     grid-column: 1 / -1;
     background: var(--surface-2);
-    border: 1px solid var(--border-light);
+    border: 2px solid var(--border-light);
     border-radius: var(--radius-lg);
     padding: 2rem 2rem;
     display: flex;
@@ -737,8 +733,7 @@
   .imssa-text { flex: 1; }
 
   .imssa-badge {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -755,7 +750,7 @@
 
   .tag {
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
     padding: 4px 12px;
     border-radius: 30px;
     background: rgba(255,255,255,0.05);
@@ -781,7 +776,6 @@
   .contact-info { flex: 1; min-width: 260px; }
 
   .contact-dept {
-    font-family: 'Syne', sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--white);
@@ -799,6 +793,7 @@
     align-items: center;
     gap: 8px;
     font-size: 0.875rem;
+    font-weight: 500;
     color: var(--text-muted);
     text-decoration: none;
     transition: color 0.2s;
@@ -811,6 +806,7 @@
     align-items: center;
     gap: 6px;
     font-size: 0.82rem;
+    font-weight: 500;
     color: var(--accent);
     text-decoration: none;
     margin-top: 0.8rem;
@@ -839,7 +835,7 @@
     align-items: center;
     gap: 6px;
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--yellow);
     background: rgba(245,200,66,0.06);
     border: 1px solid rgba(245,200,66,0.15);
