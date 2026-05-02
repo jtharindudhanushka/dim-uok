@@ -47,15 +47,30 @@
   body.lang-si .en { display: none !important; }
 
   body.lang-si {
-    line-height: 1.85; /* Increased line spacing for Sinhala paragraphs */
+    line-height: 1.85; 
   }
 
   body.lang-si .hero h1 {
-    line-height: 1.3; /* Fix spacing for Sinhala hero heading */
+    line-height: 1.3; 
   }
 
   body.lang-si .section-title {
-    line-height: 1.4; /* Fix spacing for Sinhala section titles */
+    line-height: 1.4; 
+  }
+
+  /* ─── SMART JUSTIFICATION FOR CARDS ─── */
+  /* Uses hyphenation and inter-word justification to prevent ugly whitespace gaps */
+  .about-text p, 
+  .entry-req, 
+  .step-desc, 
+  .spec-desc, 
+  .why-desc, 
+  .imssa-text p {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
   }
 
   /* ─── INITIAL LANGUAGE MODAL ─── */
@@ -273,7 +288,7 @@
 
   .hero h1 {
     font-size: clamp(2.6rem, 5.5vw, 5rem);
-    font-weight: 700; /* Bumped weight since Syne is gone */
+    font-weight: 700; 
     line-height: 1.06;
     letter-spacing: -0.02em;
     color: var(--white);
@@ -819,6 +834,25 @@
   .website-link:hover { opacity: 0.75; }
   .website-link svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
 
+  /* ─── FOOTER LOGOS ─── */
+  .footer-logos {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .footer-logos img {
+    max-width: 100%;
+    height: auto;
+    width: 240px; 
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+  }
+  
+  .footer-logos img:hover {
+    opacity: 1;
+  }
+
   /* ─── DIVIDER ─── */
   .divider {
     height: 1px;
@@ -888,7 +922,8 @@
     .stat-item:last-child { border-bottom: none; }
     .timeline { grid-template-columns: 1fr; }
     .hero-content { padding: 0 1.5rem 4rem; }
-    .contact-grid { flex-direction: column; align-items: flex-start; }
+    .contact-grid { flex-direction: column; align-items: flex-start; gap: 2.5rem; }
+    .footer-logos { justify-content: flex-start; width: 100%; }
     .slide-dots { right: 1.5rem; }
   }
 </style>
@@ -1362,6 +1397,10 @@
           im.kln.ac.lk
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
         </a>
+      </div>
+      
+      <div class="footer-logos">
+        <img src="footer.webp" alt="University and Department Logos" loading="lazy">
       </div>
 
     </div>
